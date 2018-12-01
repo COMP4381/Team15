@@ -19,7 +19,8 @@ The Companies communicate with Applicants by Gmail API.
 
 
 ## BPMN
-![jobstube 1](https://user-images.githubusercontent.com/32819463/49326495-a5f62080-f55b-11e8-9ff5-d3db1a729706.png)
+![jobstube](https://user-images.githubusercontent.com/32819463/49326530-2ae13a00-f55c-11e8-843f-435d2670b14a.png)
+
 
 
  
