@@ -1,7 +1,10 @@
-package com.example.demo;
+package models;
 
+import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
+
+@ApiModel(value="Company Model Class", description="This model represents a company object that consists of name, address and employment")
 public class Company {
 
 	String name;

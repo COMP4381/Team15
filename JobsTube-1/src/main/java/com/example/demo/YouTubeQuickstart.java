@@ -46,7 +46,7 @@ public class YouTubeQuickstart {
 	 * If modifying these scopes, delete your previously saved credentials at
 	 * ~/.credentials/drive-java-quickstart
 	 */
-	private static final List<String> SCOPES = Arrays.asList(YouTubeScopes.YOUTUBE_READONLY);
+	private static final List<String> SCOPES = Arrays.asList(YouTubeScopes.YOUTUBE);
 
 	static {
 		try {
@@ -66,7 +66,7 @@ public class YouTubeQuickstart {
 	 */
 	public static Credential authorize() throws IOException {
 		// Load client secrets.
-		InputStream in = YouTubeQuickstart.class.getResourceAsStream("/client_secret.json");
+		InputStream in = YouTubeQuickstart.class.getResourceAsStream("/credentials.json");
 		GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, new InputStreamReader(in));
 
 		// Build flow and trigger user authorization request.
@@ -83,11 +83,89 @@ public class YouTubeQuickstart {
 	 * @return an authorized API client service
 	 * @throws IOException
 	 */
-	public static YouTube getYouTubeService() throws IOException {
-		Credential credential = authorize();
+	public static YouTube getYouTubeService() {
+		Credential credential = null;
+		try {
+			credential = authorize();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return new YouTube.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential).setApplicationName(APPLICATION_NAME)
 				.build();
 	}
+	 public static Playlist insertPlaylist(String category,YouTube youtube) throws IOException {
+
+        // This code constructs the playlist resource that is being inserted.
+        // It defines the playlist's title, description, and privacy status.
+        PlaylistSnippet playlistSnippet = new PlaylistSnippet();
+        playlistSnippet.setTitle(category);
+        playlistSnippet.setDescription("A public playlist created with the YouTube API v3");
+        PlaylistStatus playlistStatus = new PlaylistStatus();
+        playlistStatus.setPrivacyStatus("public");
+
+        Playlist youTubePlaylist = new Playlist();
+        youTubePlaylist.setSnippet(playlistSnippet);
+        youTubePlaylist.setStatus(playlistStatus);
+
+        // Call the API to insert the new playlist. In the API call, the first
+        // argument identifies the resource parts that the API response should
+        // contain, and the second argument is the playlist being inserted.
+        YouTube.Playlists.Insert playlistInsertCommand =
+                youtube.playlists().insert("snippet,status", youTubePlaylist);
+        Playlist playlistInserted = playlistInsertCommand.execute();
+
+        // Print data from the API response and return the new playlist's
+        // unique playlist ID.
+        System.out.println("New Playlist name: " + playlistInserted.getSnippet().getTitle());
+        System.out.println(" - Privacy: " + playlistInserted.getStatus().getPrivacyStatus());
+        System.out.println(" - Description: " + playlistInserted.getSnippet().getDescription());
+        System.out.println(" - Posted: " + playlistInserted.getSnippet().getPublishedAt());
+        System.out.println(" - Channel: " + playlistInserted.getSnippet().getChannelId() + "\n");
+        return playlistInserted;
+
+    }
+	 
+	 
+	 public static PlaylistItem insertPlaylistItem(String playlistId, String videoId,YouTube youtube) throws IOException {
+
+	        // Define a resourceId that identifies the video being added to the
+	        // playlist.
+	        ResourceId resourceId = new ResourceId();
+	        resourceId.setKind("youtube#video");
+	        resourceId.setVideoId(videoId);
+
+	        // Set fields included in the playlistItem resource's "snippet" part.
+	        PlaylistItemSnippet playlistItemSnippet = new PlaylistItemSnippet();
+	        playlistItemSnippet.setTitle("Anything");
+	        playlistItemSnippet.setPlaylistId(playlistId);
+	        playlistItemSnippet.setResourceId(resourceId);
+
+	        // Create the playlistItem resource and set its snippet to the
+	        // object created above.
+	        PlaylistItem playlistItem = new PlaylistItem();
+	        playlistItem.setSnippet(playlistItemSnippet);
+
+	        // Call the API to add the playlist item to the specified playlist.
+	        // In the API call, the first argument identifies the resource parts
+	        // that the API response should contain, and the second argument is
+	        // the playlist item being inserted.
+	        YouTube.PlaylistItems.Insert playlistItemsInsertCommand =
+	                youtube.playlistItems().insert("snippet,contentDetails", playlistItem);
+	        PlaylistItem returnedPlaylistItem = playlistItemsInsertCommand.execute();
+
+	        // Print data from the API response and return the new playlist
+	        // item's unique playlistItem ID.
+
+	        System.out.println("New PlaylistItem name: " + returnedPlaylistItem.getSnippet().getTitle());
+	        System.out.println(" - Video id: " + returnedPlaylistItem.getSnippet().getResourceId().getVideoId());
+	        System.out.println(" - Posted: " + returnedPlaylistItem.getSnippet().getPublishedAt());
+	        System.out.println(" - Channel: " + returnedPlaylistItem.getSnippet().getChannelId());
+	        return returnedPlaylistItem;
+
+	    }
+	 
+	 
 
 //	public static void main(String[] args) throws IOException {
 //		YouTube youtube = getYouTubeService();

@@ -1,4 +1,4 @@
-package com.example.demo;
+package Utility;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -26,7 +26,7 @@ public class SwaggerConfig {
 	}
 
 	private ApiInfo apiInfo() {
-		return new ApiInfo("YoutubeJobs",
+		return new ApiInfo("JobsTube",
 				"This API build to help students and Compaines to let the student try good internship in special domain according to their skills that published from their videos in our API YoutubeJobs",
 				"V1", "", "+972-0000-90900",
 				"All the Videos Here is Publish for all the people and you can share it or you can leave any beautifu comment as a feadbak for students",

@@ -15,7 +15,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.1.1.RELEASE</version>
+		<version>2.1.0.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 
@@ -30,51 +30,15 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
 		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.oauth-client</groupId>
-			<artifactId>google-oauth-client-jetty</artifactId>
-			<version>1.27.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.collections</groupId>
-			<artifactId>google-collections</artifactId>
-			<version>1.0</version>
-		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-hateoas</artifactId>
 		</dependency>
 
 		<dependency>
-			<groupId>com.sun.mail</groupId>
-			<artifactId>javax.mail</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.apis</groupId>
-			<artifactId>google-api-services-youtube</artifactId>
-			<version>v3-rev20180511-1.27.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.apis</groupId>
-			<artifactId>google-api-services-gmail</artifactId>
-			<version>v1-rev20180904-1.27.0</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.google.apis</groupId>
-			<artifactId>google-api-services-gmail</artifactId>
-			<version>v1-rev20180904-1.27.0</version>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 		<dependency>
@@ -90,6 +54,38 @@
 			<version>2.6.1</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.google.apis</groupId>
+			<artifactId>google-api-services-gmail</artifactId>
+			<version>v1-rev20180904-1.27.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.oauth-client</groupId>
+			<artifactId>google-oauth-client-jetty</artifactId>
+			<version>1.27.0</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.api-client</groupId>
+			<artifactId>google-api-client</artifactId>
+			<version>1.27.0</version>
+		</dependency>
+		<!-- <dependency> -->
+		<!-- <groupId>javax.mail</groupId> -->
+		<!-- <artifactId>javax.mail-api</artifactId> -->
+		<!-- <version>1.6.2</version> -->
+		<!-- </dependency> -->
+		<dependency>
+			<groupId>com.sun.mail</groupId>
+			<artifactId>javax.mail</artifactId>
+			<version>1.6.2</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.google.apis</groupId>
+			<artifactId>google-api-services-youtube</artifactId>
+			<version>v3-rev20180511-1.27.0</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
