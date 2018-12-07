@@ -3,7 +3,7 @@
 
 # Abstract
 
-  This composite will help students, teachers and companies to find students in a specific domain to give them a chance to find a job or internship.  so that the Student has to sign in JobsTube channel by his gmail and upload a short video about his projects The student should upload  the video in a playlist which concern with his work (e.g web Playlist),  
+  This composite will help users(either students undergraduate or graduated), teachers and companies to find students in a specific domain to give them a chance to find a job or internship.  so that the user has to sign in JobsTube channel by his gmail and upload a short video about his projects in his channel and share it in speciefied playlist according to its category in JobsTube (e.g web Playlist). 
 His Teacher monitoring him, by making comments, rate videos ... 
 Companies who wants employees will search on JobsTube channel for a specific field in the web for example,
 then watch Applicants videos in web field and choose any Applicant it wants to employ him,
