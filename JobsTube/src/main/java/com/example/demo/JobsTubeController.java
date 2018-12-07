@@ -10,8 +10,12 @@ import java.util.List;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,12 +30,11 @@ import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.Message;
 import com.google.api.services.youtube.YouTube;
+import com.google.api.services.youtube.YouTube.Playlists.Delete;
 import com.google.api.services.youtube.model.Playlist;
 import com.google.api.services.youtube.model.PlaylistItem;
 import com.google.api.services.youtube.model.PlaylistItemListResponse;
-import com.google.api.services.youtube.model.PlaylistItemSnippet;
 import com.google.api.services.youtube.model.PlaylistListResponse;
-import com.google.api.services.youtube.model.ResourceId;
 import com.google.api.services.youtube.model.Video;
 import com.google.api.services.youtube.model.VideoSnippet;
 import com.google.api.services.youtube.model.VideoStatus;
@@ -51,65 +54,21 @@ public class JobsTubeController {
 	 * 
 	 * Using POST method
 	 */
-
-//	public PlaylistItem addPlaylistItemUsingPOST(String category,String video) throws IOException {
-//		youtube = YouTubeQuickstart.getYouTubeService();
-//		PlaylistItem response = null;
-//		try {
-//			HashMap<String, String> parameters = new HashMap<>();
-//			parameters.put("part", "snippet");
-//			parameters.put("onBehalfOfContentOwner", "");
-//
-//			PlaylistItem playlistItem = new PlaylistItem();
-//			PlaylistItemSnippet snippet = new PlaylistItemSnippet();
-//			ResourceId resourceId = new ResourceId();
-//			resourceId.set("kind", video.getKind());// "youtube#video"
-//			resourceId.set("videoId", video.getId());// "M7FIvfx5J10"
-//
-//			snippet.setResourceId(resourceId);
-//			playlistItem.setSnippet(snippet);
-//
-//			YouTube.PlaylistItems.Insert playlistItemsInsertRequest = youtube.playlistItems()
-//					.insert(parameters.get("part").toString(), playlistItem);
-//
-//			if (parameters.containsKey("onBehalfOfContentOwner") && parameters.get("onBehalfOfContentOwner") != "") {
-//				playlistItemsInsertRequest
-//						.setOnBehalfOfContentOwner(parameters.get("onBehalfOfContentOwner").toString());
-//			}
-//
-//			response = playlistItemsInsertRequest.execute();
-//			System.out.println(response);
-//		} finally {
-//
-//		}
-//		return response;
-//	}
-	
-	public PlaylistItem addVideoToPlaylist(String category,String videoId) throws IOException {
+	@RequestMapping(method = RequestMethod.GET, value = "/playlists/{category}/{videoId}")
+	public PlaylistItem addVideoToPlaylist(@PathVariable String category, @PathVariable String videoId) throws IOException {
 		PlaylistListResponse response = getAllPlaylists();
 		List<Playlist> playlists = response.getItems();
-		
-		String playlistId=null;
-		for(int i =0;i<playlists.size();i++) {
-			if(category.equals(playlists.get(i).getSnippet().getTitle())) {
-				playlistId=playlists.get(i).getId();
+
+		String playlistId = null;
+		for (int i = 0; i < playlists.size(); i++) {
+			if (category.equals(playlists.get(i).getSnippet().getTitle())) {
+				playlistId = playlists.get(i).getId();
 				System.out.println(playlistId);
 			}
 		}
 		PlaylistItem response2 = YouTubeQuickstart.insertPlaylistItem(playlistId, videoId, youtube);
 		return response2;
-		
-	}
 
-	/*
-	 * This method is used to delete Student's Video from the playlist in youtube
-	 * used by student controller
-	 *
-	 * Using DELETE method
-	 */
-	@RequestMapping(method = RequestMethod.DELETE, value = "/playlists/delete/{name}") // value needs to be fixed
-	public void deletePlaylistItemUsingDELETE() {
-		
 	}
 
 	/*
@@ -118,10 +77,26 @@ public class JobsTubeController {
 	 * 
 	 * Using POST method
 	 */
-	@RequestMapping(method = RequestMethod.GET, value = "/playlists/create/{name}")
-	public String addPlaylistUsingPOST(@PathVariable String name) throws IOException {
-		Playlist response = YouTubeQuickstart.insertPlaylist(name, youtube);
+
+	@RequestMapping(method = RequestMethod.GET, value = "/playlists/create/{category}")
+	public String addPlaylist(@PathVariable String category) throws IOException {
+		Playlist response = YouTubeQuickstart.insertPlaylist(category, youtube);
 		return response.toPrettyString();
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/playlists/delete/{category}")
+	public String deletePlaylist(@PathVariable String category) throws IOException {
+		List<Playlist> playlists = getAllPlaylists().getItems();
+		String playlistId = null;
+		for (int i = 0; i < playlists.size(); i++) {
+			if (category.equals(playlists.get(i).getSnippet().getTitle())) {
+				playlistId = playlists.get(i).getId();
+				System.out.println(playlistId);
+			}
+		}
+		
+		Delete response = YouTubeQuickstart.deletePlaylist(playlistId, youtube);
+		return response.toString();
 	}
 
 	/*

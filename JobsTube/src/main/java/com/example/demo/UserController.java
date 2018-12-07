@@ -14,11 +14,10 @@ import com.google.api.services.youtube.model.PlaylistItem;
 import com.google.api.services.youtube.model.PlaylistItemListResponse;
 import com.google.api.services.youtube.model.Video;
 
-import models.User;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
-@RequestMapping("/Users")
+@RequestMapping("/users")
 public class UserController {
 
 	ArrayList<Video> Videos = new ArrayList<Video>();
@@ -26,15 +25,9 @@ public class UserController {
 	@Autowired
 	private JobsTubeController service = new JobsTubeController();
 
-	@RequestMapping(method = RequestMethod.GET, value = "/playlists/{category}/{videoId}")
-	public String addVideoToPlaylist(@PathVariable String category, @PathVariable String videoId) throws IOException {
 
-		PlaylistItem response = service.addVideoToPlaylist(category, videoId);
-		return response.toPrettyString();
-	}
-
-	@RequestMapping(value = "/upload", method = RequestMethod.GET)
-	public String Upload() throws IOException {
+	@RequestMapping(value = "/user/upload", method = RequestMethod.GET)
+	public String uploadVideo() throws IOException {
 		Video v = service.uploadVideoUsingPOST();
 		return v.toPrettyString();
 

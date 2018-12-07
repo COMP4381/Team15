@@ -7,6 +7,8 @@ import java.util.ArrayList;
 import javax.mail.MessagingException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -18,11 +20,10 @@ import com.google.api.services.youtube.model.Playlist;
 import com.google.api.services.youtube.model.PlaylistItemListResponse;
 import com.google.api.services.youtube.model.PlaylistListResponse;
 
-import models.Company;
-//import models.Video;
+import io.swagger.annotations.ApiOperation;
 
 @RestController
-@RequestMapping("/Company")
+@RequestMapping("/company")
 public class CompanyController {
 	ArrayList<Company> company = new ArrayList<Company>();
 	ArrayList<Playlist> playlists;
@@ -59,7 +60,7 @@ public class CompanyController {
 	 * category
 	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/playlists/{category}")
-	public String searchForSpecificPlaylist(@PathVariable String category) throws IOException {
+	public String getSpecificPlaylist(@PathVariable String category) throws IOException {
 		getAllPlaylistsfor();
 		String playlistId = null;
 		for (int i = 0; i < playlists.size(); i++) {

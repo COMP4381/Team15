@@ -1,4 +1,4 @@
-package models;
+package com.example.demo;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
