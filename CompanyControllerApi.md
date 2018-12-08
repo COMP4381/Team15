@@ -4,17 +4,16 @@ All URIs are relative to *https://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**getAllPlaylistsUsingGET**](CompanyControllerApi.md#getAllPlaylistsUsingGET) | **GET** /company/playlists | getAllPlaylists
-[**getSpecificPlaylistUsingGET**](CompanyControllerApi.md#getSpecificPlaylistUsingGET) | **GET** /company/playlists/{category} | getSpecificPlaylist
-[**getStudentInfoUsingGET**](CompanyControllerApi.md#getStudentInfoUsingGET) | **GET** /company/student/{id} | getStudentInfo
-[**sendMessgeInGmailUsingGET**](CompanyControllerApi.md#sendMessgeInGmailUsingGET) | **GET** /company/sendMessage | sendMessgeInGmail
+[**getUserInfoUsingGET**](CompanyControllerApi.md#getUserInfoUsingGET) | **GET** /company/userInformation | getUserInfo
+[**searchForSpecificPlaylistUsingGET**](CompanyControllerApi.md#searchForSpecificPlaylistUsingGET) | **GET** /company/playlists/{category} | searchForSpecificPlaylist
+[**sendMessageUsingPOST**](CompanyControllerApi.md#sendMessageUsingPOST) | **POST** /company/sendMessage | sendMessage
 
 
-<a name="getAllPlaylistsUsingGET"></a>
-# **getAllPlaylistsUsingGET**
-> String getAllPlaylistsUsingGET()
+<a name="getUserInfoUsingGET"></a>
+# **getUserInfoUsingGET**
+> UserModelClass getUserInfoUsingGET()
 
-getAllPlaylists
+getUserInfo
 
 ### Example
 ```java
@@ -25,10 +24,10 @@ getAllPlaylists
 
 CompanyControllerApi apiInstance = new CompanyControllerApi();
 try {
-    String result = apiInstance.getAllPlaylistsUsingGET();
+    UserModelClass result = apiInstance.getUserInfoUsingGET();
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling CompanyControllerApi#getAllPlaylistsUsingGET");
+    System.err.println("Exception when calling CompanyControllerApi#getUserInfoUsingGET");
     e.printStackTrace();
 }
 ```
@@ -38,7 +37,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-**String**
+[**UserModelClass**](UserModelClass.md)
 
 ### Authorization
 
@@ -49,11 +48,11 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: */*
 
-<a name="getSpecificPlaylistUsingGET"></a>
-# **getSpecificPlaylistUsingGET**
-> String getSpecificPlaylistUsingGET(category)
+<a name="searchForSpecificPlaylistUsingGET"></a>
+# **searchForSpecificPlaylistUsingGET**
+> List&lt;PlaylistItem&gt; searchForSpecificPlaylistUsingGET(category)
 
-getSpecificPlaylist
+searchForSpecificPlaylist
 
 ### Example
 ```java
@@ -65,10 +64,10 @@ getSpecificPlaylist
 CompanyControllerApi apiInstance = new CompanyControllerApi();
 String category = "category_example"; // String | category
 try {
-    String result = apiInstance.getSpecificPlaylistUsingGET(category);
+    List<PlaylistItem> result = apiInstance.searchForSpecificPlaylistUsingGET(category);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling CompanyControllerApi#getSpecificPlaylistUsingGET");
+    System.err.println("Exception when calling CompanyControllerApi#searchForSpecificPlaylistUsingGET");
     e.printStackTrace();
 }
 ```
@@ -81,7 +80,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**String**
+[**List&lt;PlaylistItem&gt;**](PlaylistItem.md)
 
 ### Authorization
 
@@ -92,11 +91,11 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: */*
 
-<a name="getStudentInfoUsingGET"></a>
-# **getStudentInfoUsingGET**
-> getStudentInfoUsingGET(id)
+<a name="sendMessageUsingPOST"></a>
+# **sendMessageUsingPOST**
+> String sendMessageUsingPOST(bodyText)
 
-getStudentInfo
+sendMessage
 
 ### Example
 ```java
@@ -106,11 +105,12 @@ getStudentInfo
 
 
 CompanyControllerApi apiInstance = new CompanyControllerApi();
-Integer id = 56; // Integer | id
+String bodyText = "bodyText_example"; // String | bodyText
 try {
-    apiInstance.getStudentInfoUsingGET(id);
+    String result = apiInstance.sendMessageUsingPOST(bodyText);
+    System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling CompanyControllerApi#getStudentInfoUsingGET");
+    System.err.println("Exception when calling CompanyControllerApi#sendMessageUsingPOST");
     e.printStackTrace();
 }
 ```
@@ -119,46 +119,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| id |
-
-### Return type
-
-null (empty response body)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: */*
-
-<a name="sendMessgeInGmailUsingGET"></a>
-# **sendMessgeInGmailUsingGET**
-> String sendMessgeInGmailUsingGET()
-
-sendMessgeInGmail
-
-### Example
-```java
-// Import classes:
-//import io.swagger.client.ApiException;
-//import io.swagger.client.api.CompanyControllerApi;
-
-
-CompanyControllerApi apiInstance = new CompanyControllerApi();
-try {
-    String result = apiInstance.sendMessgeInGmailUsingGET();
-    System.out.println(result);
-} catch (ApiException e) {
-    System.err.println("Exception when calling CompanyControllerApi#sendMessgeInGmailUsingGET");
-    e.printStackTrace();
-}
-```
-
-### Parameters
-This endpoint does not need any parameter.
+ **bodyText** | **String**| bodyText |
 
 ### Return type
 

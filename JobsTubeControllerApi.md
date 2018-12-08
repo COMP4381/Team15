@@ -4,14 +4,14 @@ All URIs are relative to *https://localhost:8080*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**addPlaylistUsingGET**](JobsTubeControllerApi.md#addPlaylistUsingGET) | **GET** /JobsTube/playlists/create/{category} | addPlaylist
-[**addVideoToPlaylistUsingGET**](JobsTubeControllerApi.md#addVideoToPlaylistUsingGET) | **GET** /JobsTube/playlists/{category}/{videoId} | addVideoToPlaylist
-[**deletePlaylistUsingGET**](JobsTubeControllerApi.md#deletePlaylistUsingGET) | **GET** /JobsTube/playlists/delete/{category} | deletePlaylist
+[**addPlaylistUsingPOST**](JobsTubeControllerApi.md#addPlaylistUsingPOST) | **POST** /JobsTube/playlists/createPlaylist | addPlaylist
+[**allPlaylistsUsingGET**](JobsTubeControllerApi.md#allPlaylistsUsingGET) | **GET** /JobsTube/playlists | AllPlaylists
+[**deletePlaylistUsingDELETE**](JobsTubeControllerApi.md#deletePlaylistUsingDELETE) | **DELETE** /JobsTube/playlists/delete/{category} | deletePlaylist
 
 
-<a name="addPlaylistUsingGET"></a>
-# **addPlaylistUsingGET**
-> String addPlaylistUsingGET(category)
+<a name="addPlaylistUsingPOST"></a>
+# **addPlaylistUsingPOST**
+> String addPlaylistUsingPOST(playlistName)
 
 addPlaylist
 
@@ -23,12 +23,12 @@ addPlaylist
 
 
 JobsTubeControllerApi apiInstance = new JobsTubeControllerApi();
-String category = "category_example"; // String | category
+String playlistName = "playlistName_example"; // String | PlaylistName
 try {
-    String result = apiInstance.addPlaylistUsingGET(category);
+    String result = apiInstance.addPlaylistUsingPOST(playlistName);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling JobsTubeControllerApi#addPlaylistUsingGET");
+    System.err.println("Exception when calling JobsTubeControllerApi#addPlaylistUsingPOST");
     e.printStackTrace();
 }
 ```
@@ -37,7 +37,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **category** | **String**| category |
+ **playlistName** | **String**| PlaylistName |
 
 ### Return type
 
@@ -52,11 +52,11 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: */*
 
-<a name="addVideoToPlaylistUsingGET"></a>
-# **addVideoToPlaylistUsingGET**
-> Map&lt;String, Object&gt; addVideoToPlaylistUsingGET(category, videoId)
+<a name="allPlaylistsUsingGET"></a>
+# **allPlaylistsUsingGET**
+> String allPlaylistsUsingGET()
 
-addVideoToPlaylist
+AllPlaylists
 
 ### Example
 ```java
@@ -66,27 +66,21 @@ addVideoToPlaylist
 
 
 JobsTubeControllerApi apiInstance = new JobsTubeControllerApi();
-String category = "category_example"; // String | category
-String videoId = "videoId_example"; // String | videoId
 try {
-    Map<String, Object> result = apiInstance.addVideoToPlaylistUsingGET(category, videoId);
+    String result = apiInstance.allPlaylistsUsingGET();
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling JobsTubeControllerApi#addVideoToPlaylistUsingGET");
+    System.err.println("Exception when calling JobsTubeControllerApi#allPlaylistsUsingGET");
     e.printStackTrace();
 }
 ```
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **category** | **String**| category |
- **videoId** | **String**| videoId |
+This endpoint does not need any parameter.
 
 ### Return type
 
-**Map&lt;String, Object&gt;**
+**String**
 
 ### Authorization
 
@@ -97,9 +91,9 @@ No authorization required
  - **Content-Type**: application/json
  - **Accept**: */*
 
-<a name="deletePlaylistUsingGET"></a>
-# **deletePlaylistUsingGET**
-> String deletePlaylistUsingGET(category)
+<a name="deletePlaylistUsingDELETE"></a>
+# **deletePlaylistUsingDELETE**
+> String deletePlaylistUsingDELETE(category)
 
 deletePlaylist
 
@@ -113,10 +107,10 @@ deletePlaylist
 JobsTubeControllerApi apiInstance = new JobsTubeControllerApi();
 String category = "category_example"; // String | category
 try {
-    String result = apiInstance.deletePlaylistUsingGET(category);
+    String result = apiInstance.deletePlaylistUsingDELETE(category);
     System.out.println(result);
 } catch (ApiException e) {
-    System.err.println("Exception when calling JobsTubeControllerApi#deletePlaylistUsingGET");
+    System.err.println("Exception when calling JobsTubeControllerApi#deletePlaylistUsingDELETE");
     e.printStackTrace();
 }
 ```
