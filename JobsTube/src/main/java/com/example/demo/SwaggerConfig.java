@@ -20,7 +20,8 @@ public class SwaggerConfig {
 	@Bean
 	public Docket VideoApi() {
 		return new Docket(DocumentationType.SWAGGER_2).select()
-				.apis(RequestHandlerSelectors.basePackage("com.example.demo")).paths(regex("/users.*"))
+				.apis(RequestHandlerSelectors.basePackage("com.example.demo"))
+				.paths(regex("/Users.*"))
 
 				.build().apiInfo(apiInfo());
 	}

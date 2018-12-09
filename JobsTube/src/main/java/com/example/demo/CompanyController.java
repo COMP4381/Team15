@@ -3,24 +3,32 @@ package com.example.demo;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.mail.MessagingException;
+import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.google.api.client.googleapis.javanet.GoogleNetHttpTransport;
+import com.google.api.client.http.HttpResponse;
+import com.google.api.client.http.javanet.NetHttpTransport;
+import com.google.api.services.gmail.Gmail;
 import com.google.api.services.gmail.model.Message;
 import com.google.api.services.youtube.model.Playlist;
+import com.google.api.services.youtube.model.PlaylistItem;
 import com.google.api.services.youtube.model.PlaylistItemListResponse;
 import com.google.api.services.youtube.model.PlaylistListResponse;
-
-import io.swagger.annotations.ApiOperation;
 
 @RestController
 @RequestMapping("/company")
@@ -30,37 +38,10 @@ public class CompanyController {
 
 	@Autowired
 	private JobsTubeController service;
+	
 
-	/*
-	 * This method calls sendMessageUsingPOST from jobsTube controller to send
-	 * message to the students information
-	 */
-	@RequestMapping(method = RequestMethod.GET, value = "/sendMessage")
-	String sendMessgeInGmail() throws GeneralSecurityException, IOException, MessagingException {
-
-		String to = "farahnusseibeh@hotmail.com";
-		String from = "xalp266@gmail.com";
-		String subject = "Hello";
-		String bodyText = "This message sent using gmail api";
-		Message m = service.sendMessageUsingPOST(to, from, subject, bodyText);
-		return m.toPrettyString();
-	}
-
-	/*
-	 * This method calls getUserInfoUsingGET from jobstube controller to get student
-	 * info.
-	 */
-	@RequestMapping(method = RequestMethod.GET, value = "/student/{id}")
-	public void getStudentInfo(@PathVariable int id) { // needs some modifications
-		service.getUserInfoUsingGET(id);
-	}
-
-	/*
-	 * This method calls from jobsTube service search method to search for specific
-	 * category
-	 */
 	@RequestMapping(method = RequestMethod.GET, value = "/playlists/{category}")
-	public String getSpecificPlaylist(@PathVariable String category) throws IOException {
+	public ResponseEntity<List<PlaylistItem>> searchForSpecificPlaylist(@PathVariable String category) throws IOException {
 		getAllPlaylistsfor();
 		String playlistId = null;
 		for (int i = 0; i < playlists.size(); i++) {
@@ -69,9 +50,32 @@ public class CompanyController {
 				System.out.println(playlistId);
 			}
 		}
-		PlaylistItemListResponse response = service.getAllVideoInCategoryUsingGET(category, playlistId);
-		return response.getItems().toString();
+	//	PlaylistItemListResponse response = service.getAllVideoInCategoryUsingGET( playlistId);
+		return new ResponseEntity<List<PlaylistItem>>(service.getAllVideoInCategoryUsingGET( playlistId).getItems(),HttpStatus.OK);
 
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/userInformation")
+	public ResponseEntity<User> getUserInfo() {
+        return new ResponseEntity<User>(service.getUserInfo(),HttpStatus.OK);
+
+	} 
+
+	@RequestMapping(method = RequestMethod.POST, value = "/sendMessage")
+	public HttpEntity<String> sendMessage(@RequestBody String bodyText) throws GeneralSecurityException, IOException, MessagingException {
+		String to = "dinaayoubnatsheh@gmail.com";
+		String from = "xalp266@gmail.com";
+		String subject = "Hello";
+		final NetHttpTransport HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+		Gmail service = new Gmail.Builder(HTTP_TRANSPORT, GmailQuickstart.JSON_FACTORY,
+				GmailQuickstart.getCredentials(HTTP_TRANSPORT)).setApplicationName(GmailQuickstart.APPLICATION_NAME)
+						.build();
+
+		String userId = "me";
+		MimeMessage m = GmailQuickstart.createEmail(to, from, subject, bodyText);
+		Message content = GmailQuickstart.createMessageWithEmail(m);
+		HttpResponse mess = service.users().messages().send(userId, content).executeUnparsed();
+		return new ResponseEntity<String>(content.toPrettyString(), HttpStatus.OK);
 	}
 
 	private void getAllPlaylistsfor() throws IOException {
@@ -80,12 +84,5 @@ public class CompanyController {
 
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/playlists")
-	public String getAllPlaylists() throws IOException {
-		PlaylistListResponse response = service.getAllPlaylists();
-		playlists = (ArrayList<Playlist>) response.getItems();
-		return response.toPrettyString();
-
-	}
 
 }

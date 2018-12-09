@@ -9,15 +9,17 @@ public class User {
 	String id;
 	String name;
 	String videoURL;
+	String Email;
 
 	public User() {
 
 	}
 
-	public User(String id, String videoURL, String name) {
+	public User(String id, String videoURL, String name,String Email) {
 		this.id = id;
 		this.name = name;
 		this.videoURL = videoURL;
+		this.Email=Email;
 	}
 	
 	@ApiModelProperty(position=1, required=true,value="133")

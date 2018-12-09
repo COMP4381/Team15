@@ -15,7 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -47,6 +46,7 @@ public class JobsTubeController {
 
 	static YouTube youtube = YouTubeQuickstart.getYouTubeService();
 	static Gmail gmail;
+	User user = new User("1", "Dina", "Video", "dinaayoubnatsheh@gmail.com");
 
 	/*
 	 * This method is used to insert student's uploaded video into service playlist
@@ -54,8 +54,8 @@ public class JobsTubeController {
 	 * 
 	 * Using POST method
 	 */
-	@RequestMapping(method = RequestMethod.GET, value = "/playlists/{category}/{videoId}")
-	public PlaylistItem addVideoToPlaylist(@PathVariable String category, @PathVariable String videoId) throws IOException {
+
+	public PlaylistItem addVideoToPlaylist(String category,String videoId) throws IOException {
 		PlaylistListResponse response = getAllPlaylists();
 		List<Playlist> playlists = response.getItems();
 
@@ -78,14 +78,15 @@ public class JobsTubeController {
 	 * Using POST method
 	 */
 
-	@RequestMapping(method = RequestMethod.GET, value = "/playlists/create/{category}")
-	public String addPlaylist(@PathVariable String category) throws IOException {
+	@RequestMapping(method = RequestMethod.POST, value = "/playlists/create")
+	public HttpEntity<Playlist> addPlaylist(String category) throws IOException {
 		Playlist response = YouTubeQuickstart.insertPlaylist(category, youtube);
-		return response.toPrettyString();
+//		return response.toPrettyString();
+		return new ResponseEntity<Playlist>(response, HttpStatus.OK);
 	}
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/playlists/delete/{category}")
-	public String deletePlaylist(@PathVariable String category) throws IOException {
+	public HttpEntity<Delete> deletePlaylist(@PathVariable String category) throws IOException {
 		List<Playlist> playlists = getAllPlaylists().getItems();
 		String playlistId = null;
 		for (int i = 0; i < playlists.size(); i++) {
@@ -96,7 +97,8 @@ public class JobsTubeController {
 		}
 		
 		Delete response = YouTubeQuickstart.deletePlaylist(playlistId, youtube);
-		return response.toString();
+//		return response.toString();
+		return new ResponseEntity<Delete>(response, HttpStatus.OK);
 	}
 
 	/*
@@ -107,7 +109,7 @@ public class JobsTubeController {
 	 * 
 	 * for company to search, used by company controller
 	 */
-	public PlaylistItemListResponse getAllVideoInCategoryUsingGET(String Category, String playlistId)
+	public PlaylistItemListResponse getAllVideoInCategoryUsingGET(String playlistId)
 			throws IOException {
 
 		PlaylistItemListResponse response = null;
@@ -142,8 +144,8 @@ public class JobsTubeController {
 	 * 
 	 * Using GET method
 	 */
-	public void getUserInfoUsingGET(int id) {
-
+	public User getUserInfo() {
+		return user;
 	}
 
 	/*
@@ -290,6 +292,7 @@ public class JobsTubeController {
 	}
 
 	public PlaylistListResponse getAllPlaylists() throws IOException {
+//		PlaylistListResponse
 		PlaylistListResponse response = null;
 		try {
 			HashMap<String, String> parameters = new HashMap<>();
