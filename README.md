@@ -24,17 +24,27 @@ The client is any PC or any mobile phone and the service is JobsTube service.
 
 The composite service is JobsTube and the third-parties are: youtube and gmail.
 
-How to use JobsTube service in steps: 
+## How to use JobsTube service in steps: 
 1- Open JobsTube service.
+
 2- Sign in to JobsTube sevice by gmail to get the authentication.
+
 3- After request to log in JobsTube service the response return with JSON data representation.
+
 4- JobsTube service let the user upload Video from youtube with JSON data representation. 
+
 5- Share the video to the specific playlist in JobsTube service the data representation is JSON.
+
 6- Companies open JobsTube service and search for specifies a category to watch videos.
+
 7- JobsTube returns JSON data which is the required video.
+
 8- Company contact with the user in JobsTube by getting its information from the service ( return JSON request from the JobsTube service).
+
 9- Then the company sends to him an email from Gmail through JobsTube service.
+
 10- JobsTube service send the mail to the user.
+
 
 
 
