@@ -56,4 +56,17 @@ The composite service is JobsTube and the third-parties are: youtube and gmail.
 
 
 
- 
+
+
+
+///DINA 
+
+ # JobsTubeControllerApi
+
+All URIs are relative to *https://localhost:8080*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**addPlaylistUsingPOST**](JobsTubeControllerApi.md#addPlaylistUsingPOST) | **POST** /JobsTube/playlists/createPlaylist | addPlaylist
+[**allPlaylistsUsingGET**](JobsTubeControllerApi.md#allPlaylistsUsingGET) | **GET** /JobsTube/playlists | AllPlaylists
+[**deletePlaylistUsingDELETE**](JobsTubeControllerApi.md#deletePlaylistUsingDELETE) | **DELETE** /JobsTube/playlists/delete/{category} | deletePlaylist
