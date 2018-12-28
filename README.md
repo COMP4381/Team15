@@ -101,8 +101,8 @@ Method | HTTP request | Description
  2- [CompanyModel](https://github.com/COMP4381/Team15/blob/master/Company.md)
  
 # Documentation for Authorization
-All endpoints do not require authorization. Authentication schemes defined for the API:
+Gmail and YouTube Require Authorization
 
 # Author
-
+  1152595@student.birzeit.edu
      
