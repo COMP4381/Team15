@@ -59,3 +59,7 @@ The composite service is JobsTube and the third-parties are: youtube and gmail.
 ![jobstube](https://user-images.githubusercontent.com/32819463/49326530-2ae13a00-f55c-11e8-843f-435d2670b14a.png)
 
 first of all we have 5 lanes in JobsTube BPMN, the first lane is the User lane because he will start the whole business process by sing in to JobsTube service (separate lane) using Gmail API (atomic service in separate lane) to get the authentication to log in into JobsTube service, then in JobsTube (separate lane) he will get the access to youtube atomic service  to upload his video  then he will get the garntee from Youtube to this video and then share it in a specific playlist in JobsTube service, then the turn comes to company (separete lane) to open JobsTube service and search for specific playlist, and start watching videos if the video, not the required one for the company then the company research in specified category and watch another video, but if the video is the reqired and acomplish all the reqirment which they looking for then  the company  will get the user information content which is in his channel and from the authentication on the JobsTube service, it will contact them by sending emails to them using Gmail API, and through JobsTube service the mail will send to the user and when the user receives the mail the business process will end.  
+
+
+
+User.md
