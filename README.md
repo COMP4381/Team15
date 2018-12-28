@@ -98,11 +98,16 @@ Method | HTTP request | Description
 
 ## Documentation for Models
  1- [UserModel](https://github.com/COMP4381/Team15/blob/master/User.md)
+ 
  2- [CompanyModel](https://github.com/COMP4381/Team15/blob/master/Company.md)
  
 # Documentation for Authorization
 Gmail and YouTube Require Authorization
 
 # Author
-  1152595@student.birzeit.edu
+ Majed Nuseibeh: 1152595@student.birzeit.edu
+ 
+ Darin Jojas : darin.jojas@gmail.com
+ 
+ Dina Natsheh : dinaayoubnatsheh@gmail.com
      
