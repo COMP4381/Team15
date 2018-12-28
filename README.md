@@ -70,9 +70,13 @@ We impelemented our services using the RESTful service development paradigm. Whi
 
 # Applied Technologies
  development environment STS
- programming languages JAVA
- frameworks and libraries ( swagger 2.0, spring boot )
+ 
+ programming languages JAVA.
+ 
+ frameworks and libraries ( swagger 2.0, spring boot ).
+ 
  deployment platforms (PaaS):  Google App Engine (GAE), which is a Google Cloud Platform(GCP) service provided by Google.
+ 
  application server Apache tomcat server
 
 
