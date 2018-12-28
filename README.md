@@ -97,6 +97,12 @@ Method | HTTP request | Description
 [**sendMessageUsingPOST**](CompanyControllerApi.md#sendMessageUsingPOST) | **POST** /company/sendMessage | sendMessage
 
 ## Documentation for Models
- [UserModel](https://github.com/COMP4381/Team15/blob/master/User.md)
- [CompanyModel]((https://github.com/COMP4381/Team15/blob/master/Company.md)
+ 1- [UserModel](https://github.com/COMP4381/Team15/blob/master/User.md)
+ 2- [CompanyModel](https://github.com/COMP4381/Team15/blob/master/Company.md)
+ 
+# Documentation for Authorization
+All endpoints do not require authorization. Authentication schemes defined for the API:
+
+# Author
+
      
