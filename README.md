@@ -60,8 +60,21 @@ The composite service is JobsTube and the third-parties are: youtube and gmail.
 
 first of all we have 5 lanes in JobsTube BPMN, the first lane is the User lane because he will start the whole business process by sing in to JobsTube service (separate lane) using Gmail API (atomic service in separate lane) to get the authentication to log in into JobsTube service, then in JobsTube (separate lane) he will get the access to youtube atomic service  to upload his video  then he will get the garntee from Youtube to this video and then share it in a specific playlist in JobsTube service, then the turn comes to company (separete lane) to open JobsTube service and search for specific playlist, and start watching videos if the video, not the required one for the company then the company research in specified category and watch another video, but if the video is the reqired and acomplish all the reqirment which they looking for then  the company  will get the user information content which is in his channel and from the authentication on the JobsTube service, it will contact them by sending emails to them using Gmail API, and through JobsTube service the mail will send to the user and when the user receives the mail the business process will end.  
 
+# Implementation Details
+We impelemented our services using the RESTful service development paradigm. Which is based on the HTTP protocol which is an RPC-based synchronous communication protocol.
 
-//DINA
+# Composite Service Algorithm According to BPMN 2.0
+
+<img width="637" alt="jobtubecode" src="https://user-images.githubusercontent.com/32819463/50530516-1bc3bc80-0b07-11e9-9a32-89d9ac9981d8.PNG">
+
+
+# Applied Technologies
+ development environment STS
+ programming languages JAVA
+ frameworks and libraries ( swagger 2.0, spring boot )
+ deployment platforms (PaaS):  Google App Engine (GAE), which is a Google Cloud Platform(GCP) service provided by Google.
+ application server Apache tomcat server
+
 
 # Documentation for API Endpoints
 All URIs are relative to *https://localhost:8080*
