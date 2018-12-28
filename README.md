@@ -61,8 +61,42 @@ The composite service is JobsTube and the third-parties are: youtube and gmail.
 first of all we have 5 lanes in JobsTube BPMN, the first lane is the User lane because he will start the whole business process by sing in to JobsTube service (separate lane) using Gmail API (atomic service in separate lane) to get the authentication to log in into JobsTube service, then in JobsTube (separate lane) he will get the access to youtube atomic service  to upload his video  then he will get the garntee from Youtube to this video and then share it in a specific playlist in JobsTube service, then the turn comes to company (separete lane) to open JobsTube service and search for specific playlist, and start watching videos if the video, not the required one for the company then the company research in specified category and watch another video, but if the video is the reqired and acomplish all the reqirment which they looking for then  the company  will get the user information content which is in his channel and from the authentication on the JobsTube service, it will contact them by sending emails to them using Gmail API, and through JobsTube service the mail will send to the user and when the user receives the mail the business process will end.  
 
 
+//DINA
 
+# Documentation for API Endpoints
+All URIs are relative to *https://localhost:8080*
 
-### License
-See [UserModel](https://github.com/COMP4381/Team15/blob/master/User.md)
+# CompositeServiceControllerApi
+
+All URIs are relative to *https://localhost:8080*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**addPlaylistUsingPOST**](JobsTubeControllerApi.md#addPlaylistUsingPOST) | **POST** /JobsTube/playlists/createPlaylist | addPlaylist
+[**allPlaylistsUsingGET**](JobsTubeControllerApi.md#allPlaylistsUsingGET) | **GET** /JobsTube/playlists | AllPlaylists
+[**deletePlaylistUsingDELETE**](JobsTubeControllerApi.md#deletePlaylistUsingDELETE) | **DELETE** /JobsTube/playlists/delete/{category} | deletePlaylist
+
+# Atomic Controllers
+# UserControllerApi
+
+All URIs are relative to *https://localhost:8080*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**addVideoToPlaylistUsingPOST**](UserControllerApi.md#addVideoToPlaylistUsingPOST) | **POST** /Users/playlists/{category}/{videoId} | addVideoToPlaylist
+[**uploadUsingPOST**](UserControllerApi.md#uploadUsingPOST) | **POST** /Users/upload | Upload
+
+# CompanyControllerApi
+
+All URIs are relative to *https://localhost:8080*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getUserInfoUsingGET**](CompanyControllerApi.md#getUserInfoUsingGET) | **GET** /company/userInformation | getUserInfo
+[**searchForSpecificPlaylistUsingGET**](CompanyControllerApi.md#searchForSpecificPlaylistUsingGET) | **GET** /company/playlists/{category} | searchForSpecificPlaylist
+[**sendMessageUsingPOST**](CompanyControllerApi.md#sendMessageUsingPOST) | **POST** /company/sendMessage | sendMessage
+
+## Documentation for Models
+ [UserModel](https://github.com/COMP4381/Team15/blob/master/User.md)
+ [CompanyModel]((https://github.com/COMP4381/Team15/blob/master/Company.md)
      
