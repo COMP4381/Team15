@@ -76,4 +76,25 @@ Method | HTTP request | Description
 
 # Atomic Controllers
 
+## UserControllerApi
+
+All URIs are relative to *https://localhost:8080*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**addVideoToPlaylistUsingPOST**](UserControllerApi.md#addVideoToPlaylistUsingPOST) | **POST** /Users/playlists/{category}/{videoId} | addVideoToPlaylist
+[**uploadUsingPOST**](UserControllerApi.md#uploadUsingPOST) | **POST** /Users/upload | Upload
+
+
+## CompanyControllerApi
+
+All URIs are relative to *https://localhost:8080*
+
+Method | HTTP request | Description
+------------- | ------------- | -------------
+[**getUserInfoUsingGET**](CompanyControllerApi.md#getUserInfoUsingGET) | **GET** /company/userInformation | getUserInfo
+[**searchForSpecificPlaylistUsingGET**](CompanyControllerApi.md#searchForSpecificPlaylistUsingGET) | **GET** /company/playlists/{category} | searchForSpecificPlaylist
+[**sendMessageUsingPOST**](CompanyControllerApi.md#sendMessageUsingPOST) | **POST** /company/sendMessage | sendMessage
+
+# Documentation for Models
 
