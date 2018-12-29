@@ -124,7 +124,7 @@ Gmail and YouTube Require Authorization
 # Author
  Majed Nuseibeh: 1152595@student.birzeit.edu
  
- Darin Jojas : darin.jojas@gmail.com
+ Darin Jojas : 1152901@student.birzeit.edu
  
  Dina Natsheh : dinaayoubnatsheh@gmail.com
      
